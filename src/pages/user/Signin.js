@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function Signin() {
+export default function Signin({ setAuthenticatedUser }) {
+  const navigate = useNavigate();
+
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -30,6 +33,9 @@ export default function Signin() {
       .then((res) => res.json())
       .then((data) => {
         console.log("Inside signin fetch: ", data);
+        setAuthenticatedUser(data);
+
+        navigate("/secure");
       });
   };
 

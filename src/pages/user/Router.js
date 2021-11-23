@@ -19,7 +19,10 @@ export default function Router() {
             path="signup"
             element={<Signup setAuthenticatedUser={setAuthenticatedUser} />}
           />
-          <Route path="signin" element={<Signin />} />
+          <Route
+            path="signin"
+            element={<Signin setAuthenticatedUser={setAuthenticatedUser} />}
+          />
           <Route path="secure" element={<Secure />} />
         </Route>
       </Routes>
