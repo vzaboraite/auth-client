@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function Signup() {
+export default function Signup({ setAuthenticatedUser }) {
+  const navigate = useNavigate();
   console.log("Inside Signup page");
   const [user, setUser] = useState({
     email: "",
@@ -27,7 +29,12 @@ export default function Signup() {
 
     fetch("http://localhost:3030/signup", fetchOptions)
       .then((res) => res.json())
-      .then((data) => console.log("Inside signup fetch: ", data));
+      .then((data) => {
+        console.log("Inside signup fetch: ", data);
+        setAuthenticatedUser(data);
+
+        navigate("/secure");
+      });
   };
 
   return (
