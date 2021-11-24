@@ -33,9 +33,14 @@ export default function Signin({ setAuthenticatedUser }) {
       .then((res) => res.json())
       .then((data) => {
         console.log("Inside signin fetch: ", data);
-        setAuthenticatedUser(data);
 
-        navigate("/secure");
+        if (data) {
+          setAuthenticatedUser(data);
+
+          localStorage.setItem("user", JSON.stringify(data));
+
+          navigate("/secure");
+        }
       });
   };
 
