@@ -31,9 +31,14 @@ export default function Signup({ setAuthenticatedUser }) {
       .then((res) => res.json())
       .then((data) => {
         console.log("Inside signup fetch: ", data);
-        setAuthenticatedUser(data);
 
-        navigate("/secure");
+        if (data) {
+          setAuthenticatedUser(data);
+
+          localStorage.setItem("user", JSON.stringify(data));
+
+          navigate("/secure");
+        }
       });
   };
 
