@@ -44,12 +44,19 @@ export default function Signin({ setAuthenticatedUser }) {
       <form onSubmit={handleSubmit}>
         <h2>Sign In</h2>
         <label htmlFor="email">Email</label>
-        <input type="email" id="email" name="email" onChange={handleChange} />
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          onChange={handleChange}
+        />
         <label htmlFor="password">Password</label>
         <input
           type="password"
           id="password"
           name="password"
+          required
           onChange={handleChange}
         />
         <button type="submit">Submit</button>
