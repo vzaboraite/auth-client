@@ -36,7 +36,11 @@ export default function Router() {
             path="signin"
             element={<Signin setAuthenticatedUser={setAuthenticatedUser} />}
           />
-          <Route path="secure" element={authenticatedUser && <Secure />} />
+          <Route
+            path="secure"
+            // TODO: bring back <Secure /> component
+            element={authenticatedUser && <h1>Your secrets are safe here!</h1>}
+          />
         </Route>
       </Routes>
     </>
