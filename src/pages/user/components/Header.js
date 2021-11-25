@@ -1,7 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-export default function Header() {
+export default function Header({ setAuthenticatedUser }) {
+  const navigate = useNavigate();
+
+  const handleLogOut = (event) => {
+    localStorage.removeItem("user");
+
+    setAuthenticatedUser(null);
+
+    navigate("/");
+  };
+
   return (
     <header>
       <nav>
@@ -19,7 +29,9 @@ export default function Header() {
             <Link to="/secure">Secure</Link>
           </li>
           <li>
-            <button type="button">Log Out</button>
+            <button type="button" onClick={handleLogOut}>
+              Log Out
+            </button>
           </li>
         </ul>
       </nav>

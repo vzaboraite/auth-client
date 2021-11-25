@@ -24,7 +24,7 @@ export default function Router() {
 
   return (
     <>
-      <Header />
+      <Header setAuthenticatedUser={setAuthenticatedUser} />
       <Routes>
         <Route path="/">
           <Route index element={<Home />} />
