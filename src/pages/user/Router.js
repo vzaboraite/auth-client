@@ -36,10 +36,7 @@ export default function Router() {
             path="signin"
             element={<Signin setAuthenticatedUser={setAuthenticatedUser} />}
           />
-          <Route
-            path="secure"
-            element={authenticatedUser && <Secure user={authenticatedUser} />}
-          />
+          <Route path="secure" element={authenticatedUser && <Secure />} />
         </Route>
       </Routes>
     </>

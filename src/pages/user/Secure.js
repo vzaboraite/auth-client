@@ -1,11 +1,16 @@
 import { useEffect } from "react";
 import React, { useState } from "react";
 
-export default function Secure({ user }) {
-  console.log("Inside Secure page: ", user);
+export default function Secure() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
+    const stringifiedUser = localStorage.getItem("user");
+
+    const user = JSON.parse(stringifiedUser);
+
+    console.log("Inside Secure page: ", user);
+
     fetch("http://localhost:3030/posts", {
       method: "GET",
       headers: {
@@ -18,13 +23,13 @@ export default function Secure({ user }) {
           setPosts(data);
         }
       });
-  }, [user.id]);
+  }, []);
 
   return (
     <ul>
-      {posts.map((post) => {
+      {posts.map((post, index) => {
         return (
-          <li>
+          <li key={index}>
             <p>{post.title}</p>
             <p>{post.description}</p>
             <p>{post.user.email}</p>
