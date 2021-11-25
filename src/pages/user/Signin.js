@@ -31,13 +31,13 @@ export default function Signin({ setAuthenticatedUser }) {
 
     fetch("http://localhost:3030/signin", fetchOptions)
       .then((res) => res.json())
-      .then((data) => {
-        console.log("Inside signin fetch: ", data);
+      .then((token) => {
+        console.log("Inside signin fetch: ", token);
 
-        if (data) {
-          setAuthenticatedUser(data);
+        if (token) {
+          setAuthenticatedUser(token);
 
-          localStorage.setItem("user", JSON.stringify(data));
+          localStorage.setItem("token", token);
 
           navigate("/secure");
         }

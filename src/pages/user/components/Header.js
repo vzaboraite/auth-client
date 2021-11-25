@@ -5,7 +5,7 @@ export default function Header({ setAuthenticatedUser }) {
   const navigate = useNavigate();
 
   const handleLogOut = (event) => {
-    localStorage.removeItem("user");
+    localStorage.removeItem("token");
 
     setAuthenticatedUser(null);
 

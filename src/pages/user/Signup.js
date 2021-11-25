@@ -29,13 +29,13 @@ export default function Signup({ setAuthenticatedUser }) {
 
     fetch("http://localhost:3030/signup", fetchOptions)
       .then((res) => res.json())
-      .then((data) => {
-        console.log("Inside signup fetch: ", data);
+      .then((token) => {
+        console.log("Inside signup fetch: ", token);
 
-        if (data) {
-          setAuthenticatedUser(data);
+        if (token) {
+          setAuthenticatedUser(token);
 
-          localStorage.setItem("user", JSON.stringify(data));
+          localStorage.setItem("token", token);
 
           navigate("/secure");
         }
