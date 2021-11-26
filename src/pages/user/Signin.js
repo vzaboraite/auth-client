@@ -30,9 +30,18 @@ export default function Signin({ setAuthenticatedUser }) {
     };
 
     fetch("http://localhost:3030/signin", fetchOptions)
-      .then((res) => res.json())
-      .then((token) => {
-        console.log("Inside signin fetch: ", token);
+      .then((res) => {
+        if (res.status === 401) {
+          throw Error("Not Authorized");
+        } else if (res.status !== 200) {
+          throw Error(res);
+        }
+
+        return res.json();
+      })
+      .then((data) => {
+        console.log("Inside signin fetch: ", data);
+        const token = data;
 
         if (token) {
           setAuthenticatedUser(token);
@@ -41,6 +50,9 @@ export default function Signin({ setAuthenticatedUser }) {
 
           navigate("/secure");
         }
+      })
+      .catch((error) => {
+        return error;
       });
   };
 

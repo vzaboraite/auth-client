@@ -28,9 +28,19 @@ export default function Signup({ setAuthenticatedUser }) {
     };
 
     fetch("http://localhost:3030/signup", fetchOptions)
-      .then((res) => res.json())
-      .then((token) => {
-        console.log("Inside signup fetch: ", token);
+      .then((res) => {
+        if (res.status === 400) {
+          throw Error("Missing information");
+        } else if (res.status !== 200) {
+          throw Error(res);
+        }
+
+        return res.json();
+      })
+      .then((data) => {
+        console.log("Inside signup fetch: ", data);
+
+        const token = data;
 
         if (token) {
           setAuthenticatedUser(token);
@@ -39,6 +49,9 @@ export default function Signup({ setAuthenticatedUser }) {
 
           navigate("/secure");
         }
+      })
+      .catch((error) => {
+        return error;
       });
   };
 
