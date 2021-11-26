@@ -5,16 +5,14 @@ export default function Secure() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    const stringifiedUser = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
 
-    const user = JSON.parse(stringifiedUser);
-
-    console.log("Inside Secure page: ", user);
+    console.log("Inside Secure page: ", token);
 
     fetch("http://localhost:3030/posts", {
       method: "GET",
       headers: {
-        authorization: user.id,
+        authorization: token,
       },
     })
       .then((res) => res.json())

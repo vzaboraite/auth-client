@@ -13,12 +13,10 @@ export default function Router() {
   useEffect(() => {
     if (authenticatedUser) return;
 
-    const stringifiedUser = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
 
-    if (stringifiedUser) {
-      const user = JSON.parse(stringifiedUser);
-
-      setAuthenticatedUser(user);
+    if (token) {
+      setAuthenticatedUser(token);
     }
   }, [authenticatedUser]);
 
@@ -36,11 +34,7 @@ export default function Router() {
             path="signin"
             element={<Signin setAuthenticatedUser={setAuthenticatedUser} />}
           />
-          <Route
-            path="secure"
-            // TODO: bring back <Secure /> component
-            element={authenticatedUser && <h1>Your secrets are safe here!</h1>}
-          />
+          <Route path="secure" element={authenticatedUser && <Secure />} />
         </Route>
       </Routes>
     </>
