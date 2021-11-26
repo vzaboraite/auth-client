@@ -12,7 +12,6 @@ export default function Signin({ setAuthenticatedUser }) {
   const handleChange = (event) => {
     const inputName = event.target.name;
     const inputValue = event.target.value;
-    console.log("Inside SignIn form: ", inputName, inputValue);
 
     setUser({
       ...user,
@@ -40,7 +39,6 @@ export default function Signin({ setAuthenticatedUser }) {
         return res.json();
       })
       .then((data) => {
-        console.log("Inside signin fetch: ", data);
         const token = data;
 
         if (token) {

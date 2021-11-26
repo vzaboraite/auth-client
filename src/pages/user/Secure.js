@@ -7,8 +7,6 @@ export default function Secure() {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    console.log("Inside Secure page: ", token);
-
     fetch("http://localhost:3030/posts", {
       method: "GET",
       headers: {

@@ -3,20 +3,18 @@ import { useNavigate } from "react-router-dom";
 
 export default function Signup({ setAuthenticatedUser }) {
   const navigate = useNavigate();
-  console.log("Inside Signup page");
+
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
 
   const handleChange = (event) => {
-    console.log(event.target.name, event.target.value);
     const inputName = event.target.name;
     const inputValue = event.target.value;
 
     setUser({ ...user, [inputName]: inputValue });
   };
-  console.log(user);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -38,8 +36,6 @@ export default function Signup({ setAuthenticatedUser }) {
         return res.json();
       })
       .then((data) => {
-        console.log("Inside signup fetch: ", data);
-
         const token = data;
 
         if (token) {

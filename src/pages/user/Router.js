@@ -8,7 +8,6 @@ import Signup from "./Signup";
 
 export default function Router() {
   const [authenticatedUser, setAuthenticatedUser] = useState(null);
-  console.log("Inside user Router.js: ", authenticatedUser);
 
   useEffect(() => {
     if (authenticatedUser) return;
